@@ -30,6 +30,10 @@ public class AdminServiceImpl implements AdminService {
         adminDao.updateAdmin(sysAdminEntity);
     }
 
+    /**
+     * 删除
+     * @param sysAdminEntity
+     */
     @Override
     public void deleteAdmin(SysAdminEntity sysAdminEntity) {
         adminDao.deleteAdmin(sysAdminEntity);

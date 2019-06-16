@@ -12,6 +12,7 @@ import java.util.List;
  * @Describe：
  **/
 public interface AdminService {
+
     void saveAdmin(SysAdminEntity sysAdminEntity);
 
     void updateAdmin(SysAdminEntity sysAdminEntity);

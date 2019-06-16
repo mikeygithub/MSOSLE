@@ -137,4 +137,19 @@ public class SysUserEntity {
     public void setHouseparent(HouseparentEntity houseparent) {
         this.houseparent = houseparent;
     }
+
+    @Override
+    public String toString() {
+        return "SysUserEntity{" +
+                "userId=" + userId +
+                ", loginAccount='" + loginAccount + '\'' +
+                ", loginPassword='" + loginPassword + '\'' +
+                ", userName='" + userName + '\'' +
+                ", roleType=" + roleType +
+                ", userAvailable=" + userAvailable +
+                ", sys_admin=" + sys_admin +
+                ", instructor=" + instructor +
+                ", houseparent=" + houseparent +
+                '}';
+    }
 }

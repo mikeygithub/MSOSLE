@@ -33,7 +33,7 @@
             <appender-ref ref="RollingFile"/>
             <appender-ref ref="Console"/>
         </Logger>
-        <Logger name="com.hlhdidi.service" level="error" additivity="true">
+        <Logger name="com.mikey.msosle.service" level="error" additivity="true">
             <appender-ref ref="Console"/>
         </Logger>
     </loggers>

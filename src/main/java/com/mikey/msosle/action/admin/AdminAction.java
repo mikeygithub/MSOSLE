@@ -35,7 +35,7 @@ public class AdminAction extends ActionSupport implements ModelDriven<SysAdminEn
 
     public String addAdmin(){
 
-        System.out.println("添加管理员");
+        logger.info("添加管理员");
 
         adminService.saveAdmin(sysAdminEntity);
 

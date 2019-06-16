@@ -18,13 +18,10 @@
 			<property name="jdbcUrl" value="${jdbc.url}"></property>
 			<property name="user" value="${jdbc.username}"></property>
 			<property name="password" value="${jdbc.password}"></property>
-			<property name="maxPoolSize" value="50"></property>
-			<property name="minPoolSize" value="10"></property>
-			<property name="initialPoolSize" value="10"></property>
+			<property name="maxPoolSize" value="40"></property>
+			<property name="minPoolSize" value="1"></property>
+			<property name="initialPoolSize" value="1"></property>
 			<property name="maxIdleTime" value="20"></property>
-			<!--自动重连-->
-			<property name="testConnectionOnCheckin" value="true"></property>
-			<property name="testConnectionOnCheckout" value="true"></property>
 		</bean>
 
 		<!-- session工厂 -->
@@ -38,8 +35,6 @@
 					<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 					<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 					<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-					<!--自动重连-->
-					<prop key="hibernate.autoReconnect">${hibernate.autoReconnect}</prop>
 				</props>
 			</property>
 		</bean>
