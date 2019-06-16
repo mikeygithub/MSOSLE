@@ -14,6 +14,7 @@ import java.util.Set;
 @Table(name = "classes", schema = "msosle", catalog = "")
 public class ClassesEntity {
     private int classesId;
+    private String classesCode;
     private String classesName;
     private CollegesEntity colleges;
     private Set<ClassesEntity> students;
@@ -28,7 +29,15 @@ public class ClassesEntity {
     public void setClassesId(int classesId) {
         this.classesId = classesId;
     }
+    @Basic
+    @Column(name = "classes_code", nullable = true, length = 255)
+    public String getClassesCode() {
+        return classesCode;
+    }
 
+    public void setClassesCode(String classesCode) {
+        this.classesCode = classesCode;
+    }
     @Basic
     @Column(name = "classes_name", nullable = true, length = 255)
     public String getClassesName() {
@@ -59,7 +68,7 @@ public class ClassesEntity {
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     public CollegesEntity getColleges() {
         return colleges;
     }
@@ -68,7 +77,7 @@ public class ClassesEntity {
         this.colleges = colleges;
     }
 
-    @OneToMany(mappedBy = "classes")
+    @OneToMany(mappedBy = "classes",fetch = FetchType.EAGER)
     public Set<ClassesEntity> getStudents() {
         return students;
     }
@@ -77,7 +86,7 @@ public class ClassesEntity {
         this.students = students;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     public ClassesEntity getClasses() {
         return classes;
     }

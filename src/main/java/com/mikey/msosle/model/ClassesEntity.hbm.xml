@@ -8,6 +8,9 @@
         <id name="classesId">
             <column name="classes_id" sql-type="int(11)"/>
         </id>
+        <property name="classesCode">
+            <column name="classes_code" sql-type="varchar(255)" not-null="true"/>
+        </property>
         <property name="classesName">
             <column name="classes_name" sql-type="varchar(255)" not-null="true"/>
         </property>

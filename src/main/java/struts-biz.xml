@@ -16,7 +16,7 @@
 			</result>
 		</action>
 		<!--班级-->
-		<action name="clases_*" class="com.mikey.msosle.action.classes.ClassesAction" method="{1}">
+		<action name="classes_*" class="com.mikey.msosle.action.classes.ClassesAction" method="{1}">
 			<result name="success" type="json">
 				<param name="root">r</param>
 			</result>

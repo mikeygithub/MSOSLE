@@ -84,7 +84,7 @@ layui.use(['form','layer','table','laytpl'],function(){
             newsId = [];
         if(data.length > 0) {
             for (var i in data) {
-                newsId.push(data[i].areaId);
+                newsId.push(data[i].studentId);
             }
             layer.confirm('确定删除选中记录？', {icon: 3, title: '提示信息'}, function (index) {
                 $.post("../../../biz/student_deleteBatch.action",{
