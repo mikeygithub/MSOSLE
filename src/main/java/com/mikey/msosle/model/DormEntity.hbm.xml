@@ -11,6 +11,10 @@
         <property name="dormName">
             <column name="dorm_name" sql-type="varchar(255)" not-null="true"/>
         </property>
+
+        <property name="dormCode">
+            <column name="dorm_code" sql-type="varchar(255)" not-null="true"/>
+        </property>
         <many-to-one name="dormitory" class="com.mikey.msosle.model.DormitoryEntity"/>
     </class>
 </hibernate-mapping>

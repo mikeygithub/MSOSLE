@@ -12,7 +12,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "instructor", schema = "msosle", catalog = "")
 public class InstructorEntity {
+
     private int instructorId;
+    private String instructorCode;
     private String instructorName;
     private SysUserEntity user;
 
@@ -24,6 +26,15 @@ public class InstructorEntity {
 
     public void setInstructorId(int instructorId) {
         this.instructorId = instructorId;
+    }
+    @Basic
+    @Column(name = "instructor_code", nullable = true, length = 255)
+    public String getInstructorCode() {
+        return instructorCode;
+    }
+
+    public void setInstructorCode(String instructorCode) {
+        this.instructorCode = instructorCode;
     }
 
     @Basic

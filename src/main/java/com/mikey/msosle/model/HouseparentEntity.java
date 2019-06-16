@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Table(name = "houseparent", schema = "msosle", catalog = "")
 public class HouseparentEntity {
     private int houseparentId;
+    private String houseparentCode;
     private String houseparentName;
     private SysUserEntity user;
     private DormitoryEntity dormitory;
@@ -25,6 +26,15 @@ public class HouseparentEntity {
 
     public void setHouseparentId(int houseparentId) {
         this.houseparentId = houseparentId;
+    }
+    @Basic
+    @Column(name = "houseparent_code", nullable = true, length = 255)
+    public String getHouseparentCode() {
+        return houseparentCode;
+    }
+
+    public void setHouseparentCode(String houseparentCode) {
+        this.houseparentCode = houseparentCode;
     }
 
     @Basic

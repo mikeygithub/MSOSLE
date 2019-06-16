@@ -14,6 +14,7 @@ import java.util.Set;
 @Table(name = "dormitory", schema = "msosle", catalog = "")
 public class DormitoryEntity {
     private int dormitoryId;
+    private String dormitoryCode;
     private String dormitoryName;
     private Set<HouseparentEntity> houseparent;
     private Set<DormEntity> dorms;
@@ -26,6 +27,16 @@ public class DormitoryEntity {
 
     public void setDormitoryId(int dormitoryId) {
         this.dormitoryId = dormitoryId;
+    }
+
+    @Basic
+    @Column(name = "dormitory_code", nullable = true, length = 255)
+    public String getDormitoryCode() {
+        return dormitoryCode;
+    }
+
+    public void setDormitoryCode(String dormitoryCode) {
+        this.dormitoryCode = dormitoryCode;
     }
 
     @Basic

@@ -2,36 +2,30 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>人流量监管系统</title>
+	<title>学生晚归管理系统</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="/Ped_Moni_war/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="/Ped_Moni_war/css/public.css" media="all" />
+	<link rel="stylesheet" href="/MSOSLE_war/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/MSOSLE_war/css/public.css" media="all" />
 </head>
 <body class="childrenBody">
 <form class="layui-form" style="width:80%;">
 	<div class="layui-form-item layui-row layui-col-xs12">
-		<label class="layui-form-label">编号</label>
+		<label class="layui-form-label">宿舍楼编号</label>
 		<div class="layui-input-block">
 			<input type="hidden" class="layui-input updateFlag" value="0"><!--更新-->
 			<input type="hidden" class="layui-input Id" >
-			<input type="text" class="layui-input areaCode" lay-verify="required" placeholder="请输入编号">
+			<input type="text" class="layui-input dormitoryCode" lay-verify="required" placeholder="请输入编号">
 		</div>
 	</div>
 	<div class="layui-form-item layui-row layui-col-xs12">
-		<label class="layui-form-label">经纬度</label>
+		<label class="layui-form-label">宿舍楼名称</label>
 		<div class="layui-input-block">
-			<input type="text" class="layui-input areaLal" lay-verify="required" placeholder="请输入经纬度">
-		</div>
-	</div>
-	<div class="layui-form-item layui-row layui-col-xs12">
-		<label class="layui-form-label">地域名称</label>
-		<div class="layui-input-block">
-			<input type="text" class="layui-input areaName" lay-verify="required" placeholder="请输入地域名称">
+			<input type="text" class="layui-input dormitoryName" lay-verify="required" placeholder="请输入经纬度">
 		</div>
 	</div>
 	<div class="layui-form-item layui-row layui-col-xs12">
@@ -41,7 +35,7 @@
 		</div>
 	</div>
 </form>
-<script type="text/javascript" src="/Ped_Moni_war/layui/layui.js"></script>
-<script type="text/javascript" src="areaAdd.js"></script>
+<script type="text/javascript" src="/MSOSLE_war/layui/layui.js"></script>
+<script type="text/javascript" src="dormitoryAdd.js"></script>
 </body>
 </html>

@@ -14,6 +14,7 @@ import java.util.Set;
 @Table(name = "colleges", schema = "msosle", catalog = "")
 public class CollegesEntity {
     private int collegesId;
+    private String collegesCode;
     private String collegesName;
     private Set<ClassesEntity> classes;
 
@@ -25,6 +26,15 @@ public class CollegesEntity {
 
     public void setCollegesId(int collegesId) {
         this.collegesId = collegesId;
+    }
+    @Basic
+    @Column(name = "colleges_code", nullable = true, length = 255)
+    public String getCollegesCode() {
+        return collegesCode;
+    }
+
+    public void setCollegesCode(String collegesCode) {
+        this.collegesCode = collegesCode;
     }
 
     @Basic
@@ -57,7 +67,7 @@ public class CollegesEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "colleges")
+    @OneToMany(mappedBy = "colleges",fetch = FetchType.EAGER)
     public Set<ClassesEntity> getClasses() {
         return classes;
     }

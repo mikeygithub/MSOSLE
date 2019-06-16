@@ -2,18 +2,18 @@ layui.use(['form','layer'],function(){
     var form = layui.form
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery;
-
+    laydate.render({elem: '#lateReturnTime' ,type: 'datetime', done: function(value, date, endDate){}});
     form.on("submit(addUser)",function(data){
         //新增,更新
         var updateFlag = $(".updateFlag").val().valueOf();//0:添加 1:更新
         //弹出loading
         var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
         // 实际使用时的提交信息
-        $.post(updateFlag==='0'?"../../../sysJson/area_addArea.action":"../../../sysJson/area_updateArea.action",{//
-            areaId : updateFlag==='0'?null:$(".Id").val(),//id
-            areaCode : $(".areaCode").val(),  //登录名
-            areaLal : $(".areaLal").val(),  //邮箱
-            areaName : $(".areaName").val(),
+        $.post(updateFlag==='0'?"../../../biz/latereturn_save.action":"../../../biz/latereturn_update.action",{//
+            lateReturnId : updateFlag==='0'?null:$(".Id").val(),//id
+            dormName : $(".dormName").val(),  //登录名
+            studentName : $(".studentName").val(),  //邮箱
+            lateReturnCase : $(".lateReturnCase").text()
         },function(res){
             if (res.code === 0){
                 top.layer.close(index);

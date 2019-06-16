@@ -8,7 +8,7 @@ layui.use(['form','layer','table','laytpl'],function(){
     //用户列表
     var tableIns = table.render({
         elem: '#userList',
-        url : '../../../sysJson/area_selectAllArea.action',
+        url : '../../../biz/dorm_findByPage.action',
         cellMinWidth : 95,
         page : true,
         height : "full-125",
@@ -17,9 +17,8 @@ layui.use(['form','layer','table','laytpl'],function(){
         id : "userListTable",
         cols : [[
             {type: "checkbox", fixed:"left", width:50},
-            {field: 'areaCode', title: '区域编号', align:'center'},
-            {field: 'areaLal', title: '区域经纬度', minWidth:100, align:"center"},
-            {field: 'areaName', title: '区域名称', minWidth:200, align:'center'},
+            {field: 'dormCode', title: '宿舍编号', align:'center'},
+            {field: 'dormName', title: '宿舍名称', minWidth:100, align:"center"},
             {title: '操作', minWidth:175, templet:'#userListBar',fixed:"right",align:"center"}
         ]],
         page: true
@@ -50,14 +49,13 @@ layui.use(['form','layer','table','laytpl'],function(){
         var index = layui.layer.open({
             title : "添加",
             type : 2,
-            content : "areaAdd.html",
+            content : "dormAdd.html",
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
                 if(edit){
-                    body.find(".Id").val(edit.areaId);
-                    body.find(".areaCode").val(edit.areaCode);  //登录名
-                    body.find(".areaLal").val(edit.areaLal);  //邮箱
-                    body.find(".areaName").val(edit.areaName);  //会员等级
+                    body.find(".Id").val(edit.dormId);
+                    body.find(".dormCode").val(edit.dormCode);  //登录名
+                    body.find(".dormName").val(edit.dormName);  //邮箱
                     body.find(".updateFlag").val(1);//更新标识
                     form.render();
                 }
@@ -81,11 +79,11 @@ layui.use(['form','layer','table','laytpl'],function(){
             newsId = [];
         if(data.length > 0) {
             for (var i in data) {
-                newsId.push(data[i].areaId);
+                newsId.push(data[i].dormId);
             }
             layer.confirm('确定删除选中记录？', {icon: 3, title: '提示信息'}, function (index) {
-                $.post("../../../sysJson/area_deleteAllArea.action",{
-                    areaIds : newsId.join(',') //将需要删除的newsId作为参数传入
+                $.post("../../../biz/dorm_deleteBatch.action",{
+                    ids : newsId.join(',') //将需要删除的newsId作为参数传入
                 },function(data){
                     if (data.code===0){
                         layer.msg("删除成功");
@@ -130,8 +128,8 @@ layui.use(['form','layer','table','laytpl'],function(){
             });
         }else if(layEvent === 'del'){ //删除
             layer.confirm('确定删除此记录？',{icon:3, title:'提示信息'},function(index){
-                $.get("../../../sysJson/area_deleteArea.action",{
-                    areaId : data.areaId  //将需要删除的newsId作为参数传入
+                $.get("../../../biz/dorm_delete.action",{
+                    dormId : data.dormId  //将需要删除的newsId作为参数传入
                 },function(data){
                     if (data.code === 0){
                         layer.msg("删除成功");

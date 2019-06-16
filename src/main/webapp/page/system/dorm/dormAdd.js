@@ -9,11 +9,10 @@ layui.use(['form','layer'],function(){
         //弹出loading
         var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
         // 实际使用时的提交信息
-        $.post(updateFlag==='0'?"../../../sysJson/area_addArea.action":"../../../sysJson/area_updateArea.action",{//
-            areaId : updateFlag==='0'?null:$(".Id").val(),//id
-            areaCode : $(".areaCode").val(),  //登录名
-            areaLal : $(".areaLal").val(),  //邮箱
-            areaName : $(".areaName").val(),
+        $.post(updateFlag==='0'?"../../../biz/dorm_save.action":"../../../biz/dorm_update.action",{//
+            dormId : updateFlag==='0'?null:$(".Id").val(),//id
+            dormCode : $(".dormCode").val(),  //登录名
+            dormName : $(".dormName").val()
         },function(res){
             if (res.code === 0){
                 top.layer.close(index);

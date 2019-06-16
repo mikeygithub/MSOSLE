@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Table(name = "dorm", schema = "msosle", catalog = "")
 public class DormEntity {
     private int dormId;
+    private String dormCode;
     private String dormName;
     private DormitoryEntity dormitory;
 
@@ -24,6 +25,16 @@ public class DormEntity {
 
     public void setDormId(int dormId) {
         this.dormId = dormId;
+    }
+
+    @Basic
+    @Column(name = "dorm_code", nullable = true, length = 255)
+    public String getDormCode() {
+        return dormCode;
+    }
+
+    public void setDormCode(String dormCode) {
+        this.dormCode = dormCode;
     }
 
     @Basic
@@ -56,7 +67,7 @@ public class DormEntity {
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     public DormitoryEntity getDormitory() {
         return dormitory;
     }
