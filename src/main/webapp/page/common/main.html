@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>人流量云监管平台</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/Ped_Moni_war/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/Ped_Moni_war/css/public.css" media="all" />
+	<link rel="stylesheet" href="/Ped_Moni_war/css/bootstrap.min.css" media="all" />
+
+	<link rel="stylesheet" href="/Ped_Moni_war/css/font_400842_q6tk84n9ywvu0udi.css" media="all" />
+
+	   <script type="text/javascript" src="/Ped_Moni_war/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="/Ped_Moni_war/echarts/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="/Ped_Moni_war/echarts/ecStat.min.js"></script>
+       <script type="text/javascript" src="/Ped_Moni_war/echarts/dataTool.min.js"></script>
+       <script type="text/javascript" src="/Ped_Moni_war/echarts/china.js"></script>
+       <script type="text/javascript" src="/Ped_Moni_war/echarts/world.js"></script>
+       <!--<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>-->
+       <script type="text/javascript" src="/Ped_Moni_war/echarts/bmap.min.js"></script>
+       <script type="text/javascript" src="/Ped_Moni_war/echarts/simplex.js"></script>
+
+	<style>
+		.container{ width: 500px; margin: 60px auto; }
+		.infoBox{ width:100%; height: 640px; overflow: hidden;}
+		.list-group{ margin-bottom: 0; border-radius:0;}
+		.list-group li{  border-radius:0 !important; }
+		.list-group li:last-child{  border-bottom:0 !important; }
+	</style>
+</head>
+<body class="childrenBody">
+	<blockquote class="layui-elem-quote layui-bg-green">
+		<div id="nowTime"></div>
+	</blockquote>
+	<div class="layui-row layui-col-space10 panel_box">
+		<!--<div class="panel layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">-->
+			<!--<a href="javascript:;" data-url="https://gitee.com/layuicms/layuicms2.0" target="_blank">-->
+				<!--<div class="panel_icon layui-bg-red">-->
+					<!--<i class="layui-anim seraph icon-oschina"></i>-->
+				<!--</div>-->
+				<!--<div class="panel_word">-->
+					<!--<span>码云</span>-->
+					<!--<cite>模版下载链接</cite>-->
+				<!--</div>-->
+			<!--</a>-->
+		<!--</div>-->
+		<!--<div class="panel layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">-->
+			<!--<a href="javascript:;" data-url="page/user/userList.html">-->
+				<!--<div class="panel_icon layui-bg-orange">-->
+					<!--<i class="layui-anim seraph icon-icon10" data-icon="icon-icon10"></i>-->
+				<!--</div>-->
+				<!--<div class="panel_word userAll">-->
+					<!--<span></span>-->
+					<!--<em>用户总数</em>-->
+					<!--<cite class="layui-hide">用户中心</cite>-->
+				<!--</div>-->
+			<!--</a>-->
+		<!--</div>-->
+		<!--<div class="panel layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">-->
+			<!--<a href="javascript:;" data-url="page/systemSetting/icons.html">-->
+				<!--<div class="panel_icon layui-bg-cyan">-->
+					<!--<i class="layui-anim layui-icon" data-icon="&#xe857;">&#xe857;</i>-->
+				<!--</div>-->
+				<!--<div class="panel_word outIcons">-->
+					<!--<span></span>-->
+					<!--<em>外部图标</em>-->
+					<!--<cite class="layui-hide">图标管理</cite>-->
+				<!--</div>-->
+			<!--</a>-->
+		<!--&lt;!&ndash;</div>&ndash;&gt;-->
+		<!--<div class="panel layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">-->
+			<!--<a href="javascript:;">-->
+				<!--<div class="panel_icon layui-bg-blue">-->
+					<!--<i class="layui-anim seraph icon-clock"></i>-->
+				<!--</div>-->
+				<!--<div class="panel_word">-->
+					<!--<span class="loginTime"></span>-->
+					<!--<cite>上次登录时间</cite>-->
+				<!--</div>-->
+			<!--</a>-->
+		<!--</div>-->
+	</div>
+	<blockquote class="layui-elem-quote main_btn">
+	</blockquote>
+	<div class="layui-row layui-col-space10">
+		<div class="layui-col-lg6 layui-col-md12">
+
+			<blockquote class="layui-elem-quote title">最新人流量预警信息
+				<!--<i class="layui-icon layui-red">&#xe756;</i>-->
+			</blockquote>
+			<!--<blockquote class="layui-elem-quote layui-bg-green">-->
+				<!--<div id="nowTime"></div>-->
+			<!--</blockquote>-->
+			<!--<blockquote class="layui-elem-quote title">-->
+				<!--<tr><th>预警信息</th><th>预警位置</th><th>人员数量</th><th>摄像头编号</th><th>预警时间</th></tr>-->
+			<!--</blockquote>-->
+			<table class="layui-table mag0" lay-skin="line">
+
+							<div class="infoBox" id="infoBox">
+								<ul class="list-group warn_info_ul" >
+
+								</ul>
+							</div>
+			</table>
+		</div>
+		<div class="layui-col-lg6 layui-col-md12">
+			<blockquote class="layui-elem-quote title">数据展示</blockquote>
+			<div class="layui-elem-quote layui-quote-nm history_box magb0">
+				<div id="container" name="show_video_detail_for_main" class="show_video_detail_for_main" style="height: 100%"></div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/Ped_Moni_war/layui/layui.js"></script>
+	<script type="text/javascript" src="/Ped_Moni_war/js/config.js"></script>
+	<script type="text/javascript" src="/Ped_Moni_war/js/tool.js"></script>
+	<script type="text/javascript" src="/Ped_Moni_war/js/main.js"></script>
+
+</body>
+</html>

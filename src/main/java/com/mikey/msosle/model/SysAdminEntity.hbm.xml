@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.mikey.msosle.model.SysAdminEntity" table="sys_admin" schema="msosle">
+        <id name="adminId">
+            <column name="admin_id" sql-type="int(11)"/>
+        </id>
+        <property name="adminCode">
+            <column name="admin_code" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="adminEmail">
+            <column name="admin_email" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="adminName">
+            <column name="admin_name" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="adminPhone">
+            <column name="admin_phone" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="adminSex">
+            <column name="admin_sex" sql-type="int(11)" not-null="true"/>
+        </property>
+        <one-to-one name="user" class="com.mikey.msosle.model.SysUserEntity"/>
+    </class>
+</hibernate-mapping>

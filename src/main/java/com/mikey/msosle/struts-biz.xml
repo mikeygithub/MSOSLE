@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.custom.i18n.resources" value="messageResource" />
+	<!-- 设置上传限制为100M -->
+	<constant name="struts.multipart.maxSize" value="109715200" />
+	<!-- 编码设置 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+
+	<!-- 定义业务模块设置模块 -->
+	<package name="biz" extends="json-default" namespace="/biz" strict-method-invocation="false">
+		<!--班级-->
+		<action name="clases_*" class="com.mikey.msosle.action.classes.ClassesAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">r</param>
+			</result>
+		</action>
+		<!--学院-->
+		<action name="college_*" class="com.mikey.msosle.action.colleges.CollegesAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">r</param>
+			</result>
+		</action>
+		<!--宿舍-->
+		<action name="dorm_*" class="com.mikey.msosle.action.dorm.DormAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">r</param>
+			</result>
+		</action>
+		<!--宿舍楼-->
+		<action name="dormitory_*" class="com.mikey.msosle.action.dormitory.DormitoryAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">r</param>
+			</result>
+		</action>
+		<!--宿管员-->
+		<action name="houseparent_*" class="com.mikey.msosle.action.houseparent.HouseParentAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">r</param>
+			</result>
+		</action>
+		<!--辅导员-->
+		<action name="instructor_*" class="com.mikey.msosle.action.instructor.InstructorAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">r</param>
+			</result>
+		</action>
+		<!--晚归表-->
+		<action name="latereturn_*" class="com.mikey.msosle.action.latereturn.LateReturnAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">r</param>
+			</result>
+		</action>
+	</package>
+</struts>    
