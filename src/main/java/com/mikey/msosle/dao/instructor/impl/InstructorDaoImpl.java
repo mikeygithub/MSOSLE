@@ -71,9 +71,11 @@ public class InstructorDaoImpl implements InstructorDao {
         Criteria criteria = session.createCriteria(InstructorEntity.class);
 
         if (key != null && !key.equals("")) {
+            System.out.println("key:"+key);
             //搜索
             List list = criteria.add(
                     Restrictions.or(
+                            Restrictions.or(Restrictions.like("instructorCode", key, MatchMode.ANYWHERE)),
                             Restrictions.or(Restrictions.like("instructorName", key, MatchMode.ANYWHERE))))
                     .setFirstResult((pageBean.getCurrPage() - 1) * pageBean.getPageSize() )
                     .setMaxResults((pageBean.getCurrPage() - 1) * pageBean.getPageSize() + pageBean.getPageSize()).list();

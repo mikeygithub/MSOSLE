@@ -17,6 +17,7 @@ public class LateReturnEntity {
     private String dormName;
     private String studentName;
     private String lateReturnCase;
+    private String studentNo;
     private Timestamp lateReturnTime;
 
     @Id
@@ -37,6 +38,16 @@ public class LateReturnEntity {
 
     public void setDormName(String dormName) {
         this.dormName = dormName;
+    }
+
+    @Basic
+    @Column(name = "student_no", nullable = true, length = 255)
+    public String getStudentNo() {
+        return studentNo;
+    }
+
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
     }
 
     @Basic
@@ -95,5 +106,16 @@ public class LateReturnEntity {
         result = 31 * result + (lateReturnCase != null ? lateReturnCase.hashCode() : 0);
         result = 31 * result + (lateReturnTime != null ? lateReturnTime.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "LateReturnEntity{" +
+                "lateReturnId=" + lateReturnId +
+                ", dormName='" + dormName + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", lateReturnCase='" + lateReturnCase + '\'' +
+                ", lateReturnTime=" + lateReturnTime +
+                '}';
     }
 }

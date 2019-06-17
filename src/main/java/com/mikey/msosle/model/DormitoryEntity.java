@@ -70,7 +70,7 @@ public class DormitoryEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "dormitory")
+    @OneToMany(mappedBy = "dormitory",fetch = FetchType.EAGER)
     public Set<HouseparentEntity> getHouseparent() {
         return houseparent;
     }
@@ -79,7 +79,7 @@ public class DormitoryEntity {
         this.houseparent = houseparent;
     }
 
-    @OneToMany(mappedBy = "dormitory")
+    @OneToMany(mappedBy = "dormitory",fetch = FetchType.EAGER)
     public Set<DormEntity> getDorms() {
         return dorms;
     }

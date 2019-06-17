@@ -20,6 +20,7 @@ layui.use(['form','layer','table','laytpl'],function(){
             {field: 'lateReturnId', title: '编号', align:'center'},
             {field: 'dormName', title: '宿舍号', minWidth:100, align:"center"},
             {field: 'studentName', title: '学生姓名', minWidth:200, align:'center'},
+            {field: 'studentNo', title: '学号', minWidth:200, align:'center'},
             {field: 'lateReturnCase', title: '晚归原因', minWidth:200, align:'center'},
             {field: 'lateReturnTime', title: '晚归时间', minWidth:200, align:'center'},
             {title: '操作', minWidth:175, templet:'#userListBar',fixed:"right",align:"center"}
@@ -58,6 +59,7 @@ layui.use(['form','layer','table','laytpl'],function(){
                 if(edit){
                     body.find(".Id").val(edit.lateReturnId);
                     body.find(".studentName").val(edit.studentName);  //登录名
+                    body.find(".studentNo").val(edit.studentNo);  //登录名
                     body.find(".dormName").val(edit.dormName);  //邮箱
                     body.find(".lateReturnCase").val(edit.lateReturnCase);  //会员等级
                     body.find(".lateReturnTime").val(edit.lateReturnTime);  //会员等级

@@ -2,7 +2,9 @@ package com.mikey.msosle.action.houseparent;
 
 import com.mikey.msosle.common.PageBean;
 import com.mikey.msosle.model.HouseparentEntity;
+import com.mikey.msosle.model.SysUserEntity;
 import com.mikey.msosle.service.houseparent.HouseparentService;
+import com.mikey.msosle.service.sysuser.SysUserService;
 import com.mikey.msosle.vo.R;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -21,6 +23,8 @@ public class HouseParentAction extends ActionSupport implements ModelDriven<Hous
 
     @Autowired
     private HouseparentService houseparentService;
+    @Autowired
+    private SysUserService sysUserService;
     //日志
     private static Logger logger = Logger.getLogger(HouseparentEntity.class);
     //模型驱动
@@ -46,6 +50,15 @@ public class HouseParentAction extends ActionSupport implements ModelDriven<Hous
     public String save() {
 
         houseparentService.save(houseparentEntity);
+
+        SysUserEntity sysUserEntity = new SysUserEntity();
+
+        sysUserEntity.setLoginAccount(houseparentEntity.getHouseparentCode());
+        //1:系统管理员,2:辅导员,3:宿管员
+        sysUserEntity.setRoleType(3);
+        sysUserEntity.setLoginPassword("123456");
+        sysUserEntity.setUserName(houseparentEntity.getHouseparentName());
+        sysUserService.saveUser(sysUserEntity);
 
         r = R.ok();
 

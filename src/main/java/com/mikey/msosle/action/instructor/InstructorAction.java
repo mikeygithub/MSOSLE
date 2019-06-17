@@ -2,7 +2,9 @@ package com.mikey.msosle.action.instructor;
 
 import com.mikey.msosle.common.PageBean;
 import com.mikey.msosle.model.InstructorEntity;
+import com.mikey.msosle.model.SysUserEntity;
 import com.mikey.msosle.service.instructor.InstructorService;
+import com.mikey.msosle.service.sysuser.SysUserService;
 import com.mikey.msosle.vo.R;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -21,6 +23,9 @@ public class InstructorAction extends ActionSupport implements ModelDriven<Instr
 
     @Autowired
     private InstructorService instructorService;
+    @Autowired
+    private SysUserService sysUserService;
+
     //日志
     private static Logger logger = Logger.getLogger(InstructorEntity.class);
     //模型驱动
@@ -46,6 +51,15 @@ public class InstructorAction extends ActionSupport implements ModelDriven<Instr
     public String save() {
 
         instructorService.save(instructorEntity);
+
+        SysUserEntity sysUserEntity = new SysUserEntity();
+        //1:系统管理员,2:辅导员,3:宿管员
+        sysUserEntity.setRoleType(2);
+        sysUserEntity.setLoginAccount(instructorEntity.getInstructorCode());
+        sysUserEntity.setLoginPassword("123456");
+        sysUserEntity.setUserName(instructorEntity.getInstructorName());
+
+        sysUserService.saveUser(sysUserEntity);
 
         r = R.ok();
 

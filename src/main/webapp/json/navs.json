@@ -79,7 +79,7 @@
 				{
 					"title": "宿管员列表",
 					"icon": "&#xe61c;",
-					"href": "/MSOSLE_war/page/system/houseparent/houseparent.html",
+					"href": "/MSOSLE_war/page/system/houseparent/houseparentList.html",
 					"spread": false
 				}
 			]

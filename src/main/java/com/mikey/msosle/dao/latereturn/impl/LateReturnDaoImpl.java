@@ -73,8 +73,7 @@ public class LateReturnDaoImpl implements LateReturnDao {
             List list = criteria.add(
                     Restrictions.or(
                             Restrictions.or(Restrictions.like("studentNo", key, MatchMode.ANYWHERE)),
-                            Restrictions.or(Restrictions.like("studentName", key, MatchMode.ANYWHERE)),
-                            Restrictions.or(Restrictions.like("studentSex", key, MatchMode.ANYWHERE))))
+                            Restrictions.or(Restrictions.like("studentName", key, MatchMode.ANYWHERE))))
                     .setFirstResult((pageBean.getCurrPage() - 1) * pageBean.getPageSize() )
                     .setMaxResults((pageBean.getCurrPage() - 1) * pageBean.getPageSize() + pageBean.getPageSize()).list();
             pageBean.setRows(list);

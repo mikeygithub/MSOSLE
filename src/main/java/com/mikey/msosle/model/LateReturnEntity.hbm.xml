@@ -14,6 +14,9 @@
         <property name="studentName">
             <column name="student_name" sql-type="varchar(255)" not-null="true"/>
         </property>
+        <property name="studentNo">
+            <column name="student_no" sql-type="varchar(255)" not-null="true"/>
+        </property>
         <property name="lateReturnCase">
             <column name="late_return_case" sql-type="varchar(255)" not-null="true"/>
         </property>

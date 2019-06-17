@@ -1,7 +1,8 @@
-layui.use(['form','layer'],function(){
+layui.use(['form','layer','laydate'],function(){
     var form = layui.form
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery;
+    var laydate = layui.laydate;
     laydate.render({elem: '#lateReturnTime' ,type: 'datetime', done: function(value, date, endDate){}});
     form.on("submit(addUser)",function(data){
         //新增,更新
@@ -13,7 +14,9 @@ layui.use(['form','layer'],function(){
             lateReturnId : updateFlag==='0'?null:$(".Id").val(),//id
             dormName : $(".dormName").val(),  //登录名
             studentName : $(".studentName").val(),  //邮箱
-            lateReturnCase : $(".lateReturnCase").text()
+            studentNo : $(".studentNo").val(),  //邮箱
+            lateReturnTimes: $(".lateReturnTime").val(),
+            lateReturnCase : $(".lateReturnCase").val()
         },function(res){
             if (res.code === 0){
                 top.layer.close(index);

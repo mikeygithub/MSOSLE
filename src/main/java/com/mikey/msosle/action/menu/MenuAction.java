@@ -1,16 +1,18 @@
-package com.mikey.msosle.action.latereturn;
+package com.mikey.msosle.action.menu;
 
 import com.mikey.msosle.common.PageBean;
-import com.mikey.msosle.model.LateReturnEntity;
-import com.mikey.msosle.service.latereturn.LateReturnService;
-import com.mikey.msosle.util.DateUtil;
+import com.mikey.msosle.model.ClassesEntity;
+import com.mikey.msosle.model.InstructorEntity;
+import com.mikey.msosle.model.SysMenuEntity;
+import com.mikey.msosle.service.classes.ClassesService;
+import com.mikey.msosle.service.menu.MenuService;
 import com.mikey.msosle.vo.R;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -20,16 +22,16 @@ import java.util.Date;
  * @Create: 2019-06-05 09:24
  * @Describe：
  **/
-public class LateReturnAction extends ActionSupport implements ModelDriven<LateReturnEntity> {
+public class MenuAction extends ActionSupport implements ModelDriven<SysMenuEntity> {
 
     @Autowired
-    private LateReturnService lateReturnService;
+    private MenuService menuService;
     //日志
-    private static Logger logger = Logger.getLogger(LateReturnEntity.class);
+    private static Logger logger = Logger.getLogger(SysMenuEntity.class);
     //模型驱动
-    private LateReturnEntity lateReturnEntity = new LateReturnEntity();
+    private SysMenuEntity sysMenuEntity = new SysMenuEntity();
     //
-    private PageBean<LateReturnEntity> pageBean = new PageBean<>();
+    private PageBean<SysMenuEntity> pageBean = new PageBean<>();
     //返回集
     private R r = new R();
     //搜索值
@@ -41,7 +43,7 @@ public class LateReturnAction extends ActionSupport implements ModelDriven<LateR
     //批量删除id
     private String ids;
 
-    private String lateReturnTimes;
+    private String roleTypes;
 
     /////////////////////////////////////////
 
@@ -50,13 +52,7 @@ public class LateReturnAction extends ActionSupport implements ModelDriven<LateR
      */
     public String save() {
 
-        Date date = DateUtil.string2Date(lateReturnTimes, "yyyy-MM-dd hh:mm:ss");
-
-        lateReturnEntity.setLateReturnTime(new java.sql.Timestamp(date.getTime()));
-
-        logger.info("保存晚归信息："+lateReturnEntity);
-
-        lateReturnService.save(lateReturnEntity);
+        menuService.save(sysMenuEntity);
 
         r = R.ok();
 
@@ -68,7 +64,7 @@ public class LateReturnAction extends ActionSupport implements ModelDriven<LateR
      */
     public String delete() {
 
-        lateReturnService.delete(lateReturnEntity);
+        menuService.delete(sysMenuEntity);
 
         r = R.ok();
 
@@ -79,11 +75,8 @@ public class LateReturnAction extends ActionSupport implements ModelDriven<LateR
      * 修改
      */
     public String update() {
-        Date date = DateUtil.string2Date(lateReturnTimes, "yyyy-MM-dd hh:mm:ss");
 
-        lateReturnEntity.setLateReturnTime(new java.sql.Timestamp(date.getTime()));
-
-        lateReturnService.update(lateReturnEntity);
+        menuService.update(sysMenuEntity);
 
         r = R.ok();
 
@@ -97,7 +90,8 @@ public class LateReturnAction extends ActionSupport implements ModelDriven<LateR
      */
     public String findById() {
 
-        LateReturnEntity byId = lateReturnService.findById(lateReturnEntity);
+
+        InstructorEntity byId = menuService.findById(sysMenuEntity);
 
         r = R.ok().put("data", byId);
 
@@ -109,7 +103,8 @@ public class LateReturnAction extends ActionSupport implements ModelDriven<LateR
      */
     public String findByPage() {
 
-        PageBean byPage = lateReturnService.findByPage(key, new PageBean<LateReturnEntity>().setCurrPage(page).setPageSize(limit));
+        PageBean byPage = menuService.findByPage(key, new PageBean<SysMenuEntity>().setCurrPage(page).setPageSize(limit));
+
 
         r = R.ok().put("data", byPage.getRows()).put("count", byPage.getTotal());
 
@@ -127,34 +122,49 @@ public class LateReturnAction extends ActionSupport implements ModelDriven<LateR
         String[] id = ids.split(",");
 
 
-        lateReturnService.deleteBatch(id);
+        menuService.deleteBatch(id);
 
         r = R.ok();
 
         return SUCCESS;
     }
 
-    @Override
-    public LateReturnEntity getModel() {
-        return lateReturnEntity;
+    /**
+     * 获取菜单
+     *
+     * @return
+     */
+    public String getMenuByRoleType() {
+
+        logger.info("roleType：" + roleTypes);
+
+        List<SysMenuEntity> menuByRoleType = menuService.getMenuByRoleType(roleTypes);
+
+        r = R.ok().put("contentManagement", menuByRoleType);
+
+        logger.info("菜单信息：" + r);
+
+        return SUCCESS;
+
     }
 
 
     /////////////////////////////////////////
 
-    public LateReturnEntity getLateReturnEntity() {
-        return lateReturnEntity;
+
+    public SysMenuEntity getSysMenuEntity() {
+        return sysMenuEntity;
     }
 
-    public void setLateReturnEntity(LateReturnEntity lateReturnEntity) {
-        this.lateReturnEntity = lateReturnEntity;
+    public void setSysMenuEntity(SysMenuEntity sysMenuEntity) {
+        this.sysMenuEntity = sysMenuEntity;
     }
 
-    public PageBean<LateReturnEntity> getPageBean() {
+    public PageBean<SysMenuEntity> getPageBean() {
         return pageBean;
     }
 
-    public void setPageBean(PageBean<LateReturnEntity> pageBean) {
+    public void setPageBean(PageBean<SysMenuEntity> pageBean) {
         this.pageBean = pageBean;
     }
 
@@ -198,11 +208,18 @@ public class LateReturnAction extends ActionSupport implements ModelDriven<LateR
         this.ids = ids;
     }
 
-    public String getLateReturnTimes() {
-        return lateReturnTimes;
+    @Override
+    public SysMenuEntity getModel() {
+        return sysMenuEntity;
     }
 
-    public void setLateReturnTimes(String lateReturnTimes) {
-        this.lateReturnTimes = lateReturnTimes;
+    public String getRoleTypes() {
+        return roleTypes;
+    }
+
+    public void setRoleTypes(String roleTypes) {
+        this.roleTypes = roleTypes;
     }
 }
+
+
