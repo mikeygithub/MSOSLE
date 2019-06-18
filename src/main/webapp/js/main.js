@@ -36,10 +36,6 @@ layui.config({
         $tool = layui.$tool,
         $api = layui.$api;
         table = layui.table;
-    var msgData = [];
-    var num = 0;
-    var dataVideoCode = [];
-    var dataPeopleNum = [];
     //上次登录时间【此处应该从接口获取，实际使用中请自行更换】
     $(".loginTime").html(newDate.split("日")[0] + "日</br>" + newDate.split("日")[1]);
     //icon动画
@@ -52,7 +48,7 @@ layui.config({
         parent.addTab($(this));
     })
 
-
+    $(".username").text(window.sessionStorage.getItem("userName"));
 
     //填充数据方法
     function fillParameter(data) {
