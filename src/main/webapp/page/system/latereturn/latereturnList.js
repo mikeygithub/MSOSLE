@@ -1,8 +1,9 @@
-layui.use(['form','layer','table','laytpl'],function(){
+layui.use(['form','layer','table','laytpl','laydate','jquery'],function(){
     var form = layui.form,
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery,
         laytpl = layui.laytpl,
+        laydate = layui.laydate,
         table = layui.table;
 
     //用户列表
@@ -149,5 +150,34 @@ layui.use(['form','layer','table','laytpl'],function(){
             });
         }
     });
-
+    // 加载框
+    var loading;
+    form.on('submit(uploadImg)', function(data){
+        loading = layer.load(1, {shade: [0.3, '#fff']});
+        var $ = layui.jquery;
+        var excel = layui.excel;
+        $.ajax({
+            url: '../../../biz/latereturn_findByPage.action?page=1&limit=10000&key='+ $(".searchVal").val() ,
+            dataType: 'json',
+            data: {
+                datas:JSON.stringify(data.field)
+            },
+            success: function(res) {
+                layer.close(loading);
+                layer.msg(res.msg);
+                // 假如返回的 res.data 是需要导出的列表数据
+                console.log(res.data);//
+                // 1. 数组头部新增表头{type: "checkbox", fixed:"left", width:50},
+                res.data.unshift({lateReturnId: 'ID',dormName: '宿舍号',studentName:'学生姓名',studentNo:'学号',lateReturnCase:'晚归原因',lateReturnTime:'lateReturnTime'});
+                // 3. 执行导出函数，系统会弹出弹框
+                excel.exportExcel({
+                    sheet1: res.data
+                }, '晚归记录.xlsx', 'xlsx');
+            },
+            error:function(res){
+                layer.close(loading);
+                layer.msg(res.msg);
+            }
+        });
+    });
 })
