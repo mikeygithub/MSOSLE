@@ -164,7 +164,7 @@ CREATE TABLE `instructor` (
   `instructor_name` varchar(255) DEFAULT NULL,
   `instructor_code` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`instructor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +173,7 @@ CREATE TABLE `instructor` (
 
 LOCK TABLES `instructor` WRITE;
 /*!40000 ALTER TABLE `instructor` DISABLE KEYS */;
-INSERT INTO `instructor` (`instructor_id`, `instructor_name`, `instructor_code`) VALUES (1,'蔡敏仪','I001');
+INSERT INTO `instructor` (`instructor_id`, `instructor_name`, `instructor_code`) VALUES (1,'蔡敏仪','I001'),(2,'INS002','INS002');
 /*!40000 ALTER TABLE `instructor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,7 +303,7 @@ CREATE TABLE `sys_menu_children` (
   PRIMARY KEY (`id`),
   KEY `FKA8243AED1D1BC4B6` (`fatherMenu_id`),
   CONSTRAINT `FKA8243AED1D1BC4B6` FOREIGN KEY (`fatherMenu_id`) REFERENCES `sys_menu` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -312,7 +312,7 @@ CREATE TABLE `sys_menu_children` (
 
 LOCK TABLES `sys_menu_children` WRITE;
 /*!40000 ALTER TABLE `sys_menu_children` DISABLE KEYS */;
-INSERT INTO `sys_menu_children` (`id`, `title`, `icon`, `href`, `spread`, `fatherMenu_id`) VALUES (1,'学生列表','&#xe61c;','/MSOSLE_war/page/system/student/studentList.html',0,1),(2,'班级列表','&#xe61c;','/MSOSLE_war/page/system/class/classList.html',0,2),(3,'学院列表','&#xe61c;','/MSOSLE_war/page/system/colleges/collegesList.html',0,3),(4,'宿舍列表','&#xe61c;','/MSOSLE_war/page/system/dorm/dormList.html',0,4),(5,'宿舍楼管理','&#xe61c;','/MSOSLE_war/page/system/dormitory/dormitoryList.html',0,5),(6,'宿管员列表','&#xe61c;','/MSOSLE_war/page/system/houseparent/houseparentList.html',0,6),(7,'辅导员列表','&#xe61c;','/MSOSLE_war/page/system/instructor/instructorList.html',0,7),(8,'记录列表','&#xe61c;','/MSOSLE_war/page/system/latereturn/latereturnList.html',0,8);
+INSERT INTO `sys_menu_children` (`id`, `title`, `icon`, `href`, `spread`, `fatherMenu_id`) VALUES (1,'学生列表','&#xe61c;','/MSOSLE_war/page/system/student/studentList.html',0,1),(2,'班级列表','&#xe61c;','/MSOSLE_war/page/system/class/classList.html',0,2),(3,'学院列表','&#xe61c;','/MSOSLE_war/page/system/colleges/collegesList.html',0,3),(4,'宿舍列表','&#xe61c;','/MSOSLE_war/page/system/dorm/dormList.html',0,4),(5,'宿舍楼管理','&#xe61c;','/MSOSLE_war/page/system/dormitory/dormitoryList.html',0,5),(6,'宿管员列表','&#xe61c;','/MSOSLE_war/page/system/houseparent/houseparentList.html',0,6),(7,'辅导员列表','&#xe61c;','/MSOSLE_war/page/system/instructor/instructorList.html',0,7),(8,'记录列表','&#xe61c;','/MSOSLE_war/page/system/latereturn/latereturnList.html',0,8),(9,'记录列表','&#xe61c;','/MSOSLE_war/page/system/latereturn/latereturnList.html',0,9),(10,'记录列表','&#xe61c;','/MSOSLE_war/page/system/latereturn/latereturnList.html',0,10),(11,'学生列表','&#xe61c;','/MSOSLE_war/page/system/student/studentList.html',0,11);
 /*!40000 ALTER TABLE `sys_menu_children` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -340,7 +340,7 @@ CREATE TABLE `sys_user` (
   CONSTRAINT `FK74A81DFD589E37DA` FOREIGN KEY (`houseparent_houseparent_id`) REFERENCES `houseparent` (`houseparent_id`),
   CONSTRAINT `FK74A81DFD5BA70F3` FOREIGN KEY (`instructor_instructor_id`) REFERENCES `instructor` (`instructor_id`),
   CONSTRAINT `FK74A81DFDB2D999EA` FOREIGN KEY (`sys_admin_admin_id`) REFERENCES `sys_admin` (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -349,7 +349,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` (`user_id`, `login_account`, `login_password`, `user_name`, `role_type`, `user_available`, `houseparent_houseparent_id`, `instructor_instructor_id`, `sys_admin_admin_id`) VALUES (1,'admin','admin','admin',1,1,NULL,NULL,NULL),(2,'HP001','123456','HP001',3,0,NULL,NULL,NULL),(3,'HP002','123456','HP002',3,0,NULL,NULL,NULL);
+INSERT INTO `sys_user` (`user_id`, `login_account`, `login_password`, `user_name`, `role_type`, `user_available`, `houseparent_houseparent_id`, `instructor_instructor_id`, `sys_admin_admin_id`) VALUES (1,'admin','admin','admin',1,1,NULL,NULL,NULL),(2,'HP001','123456','HP001',3,0,NULL,NULL,NULL),(3,'HP002','123456','HP002',3,0,NULL,NULL,NULL),(4,'INS002','123456','INS002',2,0,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -362,4 +362,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-18 12:49:54
+-- Dump completed on 2019-06-18 14:57:23
